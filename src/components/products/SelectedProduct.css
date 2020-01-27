@@ -1,0 +1,109 @@
+.breadcrumb span {
+  color: #3e7697;
+}
+#banner-section #prod-desc #brand {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+#banner-section #prod-desc mat-list-item {
+  margin-bottom: -1.5rem;
+}
+#banner-section #prod-desc #price {
+  font-weight: bold;
+}
+@media (min-width: 768px) {
+  #banner-section #prod-desc #price {
+    font-size: 1.5rem;
+ }
+}
+#banner-section #prod-desc #free-delivery {
+  font-size: 1.2rem;
+}
+#banner-section #prod-desc #free-delivery i {
+  font-size: 1.5rem;
+}
+#banner-section #prod-desc #btn-add-to-cart {
+  width: 100%;
+  background-color: #f96302;
+  color: white;
+}
+#banner-section #prod-desc .stainlessImgClass {
+  border-bottom: 4px solid #f96302 !important;
+}
+#banner-section #prod-desc .blackImgClass {
+  border-bottom: 4px solid #f96302 !important;
+}
+#banner-section #prod-desc .whiteImgClass {
+  border-bottom: 4px solid #f96302 !important;
+}
+@media (min-width: 768px) {
+  #banner-section #prod-desc #name {
+    font-size: 1.7rem;
+ }
+  #banner-section #prod-desc #btn-add-to-cart {
+    width: 50%;
+ }
+}
+@media (min-width: 1200px) {
+  #banner-section #prod-desc #btn-add-to-cart {
+    width: 100%;
+ }
+}
+#specifications hr {
+  border-bottom: 2px solid #f96302;
+}
+
+.link-blue {
+	 color: #3e7697;
+}
+ .primary-green {
+	 color: #00873c;
+}
+ .primary-gray {
+	 background-color: #eee;
+}
+ .section-heading {
+	 border-bottom: 4px solid #f96302 !important;
+}
+ .button-primary {
+	 background-color: #f96302;
+	 color: white;
+	 border: inset #f96302 2px;
+	 font-weight: bold;
+	 padding: 5px 40px;
+	 border-radius: 0;
+}
+ .px-cust-5 {
+	 padding-left: 1rem;
+	 padding-right: 1rem;
+}
+ @media (min-width: 991px) {
+	 .px-cust-5 {
+		 padding-left: 5rem;
+		 padding-right: 5rem;
+	}
+}
+ .strikethrough {
+	 text-decoration: line-through !important;
+}
+ .border-outset {
+	 border: outset;
+}
+ .star {
+	 font-size: 1.5rem;
+	 color: #ccc;
+}
+ .star2 {
+	 font-size: 2rem;
+	 color: #ccc;
+}
+ .filled {
+	 color: #f96302;
+}
+ .bad {
+	 color: #deb0b0;
+}
+ .filled.bad {
+	 color: #ff1e1e;
+}
+ 

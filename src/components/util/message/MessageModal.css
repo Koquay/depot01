@@ -1,0 +1,12 @@
+.alertInfoClass
+.alertSuccessClass {
+    background-color: white;
+    color: initial;
+}
+
+.alertDangerClass
+ {
+    background-color: #f2b8b8;
+    color: red;
+    font-size: 1.5rem;
+}
