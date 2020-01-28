@@ -120,3 +120,69 @@ body {
     }
   }
   
+  nav {
+    z-index: 10;
+ }
+  .drop-down {
+    position: relative;
+ }
+  .drop-down:hover {
+    font-weight: bold;
+ }
+  .drop-down:hover ul {
+    display: block;
+ }
+  .drop-down:hover ul a {
+    font-weight: initial;
+ }
+  .drop-down ul {
+    position: absolute;
+    background-color: #fff;
+    width: 18rem;
+    display: none;
+ }
+  .drop-down ul li {
+    padding: 0.2rem 1rem;
+ }
+  .drop-down ul li a {
+    text-decoration: none;
+ }
+  .drop-down ul li a:hover {
+    font-weight: bold;
+ }
+ 
+ .page-wrapper {
+  position: relative;
+}
+.page-wrapper .overlay {
+  position: absolute;
+  top: 9.2rem;
+  left: 0;
+  z-index: 10;
+  width: 100vw;
+  height: 500vh;
+  background: rgba(0, 0, 0, 0.5);
+  transition: 0.4s;
+}
+.page-wrapper #header {
+  z-index: 20;
+}
+
+#search-column {
+  position: relative;
+}
+#search-column ul {
+  position: absolute;
+  width: 75%;
+  border: 1px solid;
+  z-index: 20;
+  background: white;
+  top: 5rem;
+}
+#search-column ul li {
+  width: 100%;
+}
+
+#search-column .input-group {
+  /* position: absolute; */
+}

@@ -179,7 +179,12 @@ class Brand extends Component {
                                 </div>
                             </div>
                         </div>
+
+                        {/* {products &&
+                        
+                    } */}
                         <div className="col-12 col-lg-10" id="main">
+
                             <div className="row">
                                 <div className="col text-right">
                                     <select

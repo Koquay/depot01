@@ -5,7 +5,6 @@ import { signIn, logoutUser } from "../../user/UserAction";
 import './Header.css'
 import store from '../../../redux/store'
 import { Type } from '../../../redux/types';
-import classnames from 'classnames'
 
 class Header extends Component {
     state = {
@@ -13,15 +12,6 @@ class Header extends Component {
         email: 'homedepot01@homedepot01.com',
         password: 'homedepot01',
 
-        overlayDisplayed: false,
-        searchBox: false,
-        searchItems: [],
-        searchResults: [],
-
-    }
-
-    componentDidMount() {
-        this.setState({ searchItems: this.props.header.searchItems })
     }
 
     handleSignIn = () => {
@@ -39,38 +29,14 @@ class Header extends Component {
         this.props.logoutUser(this.props.history);
     }
 
-    showOverlay = (value) => {
-        console.log('SHOW OVERLAY')
-        this.setState({ overlayDisplayed: value });
-    }
-
-    searchText = (e) => {
-        const tmpResult = this.state.searchItems
-            .filter(item => item.toLowerCase().includes(e.target.value.toLowerCase()))
-        this.setState({ searchResults: tmpResult })
-
-        if (e.target.value) {
-            this.setState({ searchBox: true })
-        } else {
-            this.setState({ searchBox: false })
-        }
-    }
-
-    clearSearchbox = (e) => {
-        this.setState({ searchResults: [] })
-    }
-
     render() {
         const { header } = this.props;
         const { user, isLoggedIn } = this.props.user;
         const { errors } = this.props;
         const numberOfItems = this.props.cart.cartItems.length;
-        const searchItems = this.state.searchResults;
-        console.log('searchItems', searchItems)
 
         return (
-            <div className="page-wrapper">
-                <section className={classnames({ 'overlay': this.state.overlayDisplayed })}></section>
+            <div>
                 <header>
                     <div className="row py-3 px-cust-5">
                         <div className="col-3 d-flex d-lg-flex align-items-end col-md-3">
@@ -78,29 +44,12 @@ class Header extends Component {
                             <i className="fa fa-map-marker ml-3 mr-1 d-none d-lg-block"></i>
                             <span className="d-none d-lg-block">Find Your Location</span>
                         </div>
-                        <div id="search-column" className="col d-flex align-items-end col-md-6">
+                        <div className="col d-flex align-items-end col-md-6">
                             <div className="input-group">
                                 <div className="input-group-prepend"></div>
-                                <input
-                                    className="form-control"
-                                    type="text"
-                                    name="searchField"
-                                    onChange={this.searchText}
-                                />
-                                <div className="input-group-append">
-                                    <button className="btn btn-primary" type="button"><i className="fa fa-search"></i></button></div>
+                                <input className="form-control" type="text" />
+                                <div className="input-group-append"><button className="btn btn-primary" type="button"><i className="fa fa-search"></i></button></div>
                             </div>
-
-                            {this.state.searchBox &&
-                                <ul className="list-unstyled d-block d-none d-lg-block ">
-                                    {searchItems.map(item => (
-                                        <li key={item} className="py-1 px-2">
-                                            {/* <Link to={'/brand/' + item}>{item}</Link> */}
-                                            <a href={'/brand/' + item} onClick={this.clearSearchbox}>{item}</a>
-                                        </li>
-                                    ))}
-                                </ul>
-                            }
                         </div>
                         <div className="col-2 d-flex justify-content-between align-items-end align-items-md-end col-md-3">
                             {!isLoggedIn &&
@@ -126,7 +75,7 @@ class Header extends Component {
                             </Link>
                         </div>
                     </div>
-                    {/* <nav className="navbar navbar-light navbar-expand-lg px-cust-5 my-0">
+                    <nav className="navbar navbar-light navbar-expand-lg px-cust-5 my-0">
                         <div className="container-fluid"><button data-toggle="collapse" className="navbar-toggler" data-target="#navcol-1"><span className="sr-only">Toggle navigation</span><span className="navbar-toggler-icon"></span></button>
                             <div className="collapse navbar-collapse" id="navcol-1">
                                 <ul className="nav navbar-nav">
@@ -140,63 +89,11 @@ class Header extends Component {
                                 </ul>
                             </div>
                         </div>
-                    </nav> */}
-                    <nav className="navbar navbar-light navbar-expand-lg px-cust-5 my-0">
-                        <div className="container-fluid"><button data-toggle="collapse" data-target="#navcol-1"
-                            className="navbar-toggler"><span className="sr-only">Toggle navigation</span><span
-                                className="navbar-toggler-icon"></span></button>
-                            <div className="collapse navbar-collapse" id="navcol-1">
-                                <ul className="nav navbar-nav">
-                                    <li role="presentation" className="nav-item drop-down" onMouseEnter={this.showOverlay.bind(this, true)}
-                                        onMouseLeave={this.showOverlay.bind(this, false)}>
-                                        <a className="nav-link">
-                                            All Departments
-                                        <i className="fa fa-caret-down ml-1"></i>
-                                        </a>
-                                        <ul className="list-unstyled">
-                                            <li>
-                                                <Link className="nav-link active" to='/appliances'>
-                                                    Appliances
-                                            </Link>
-                                            </li>
-
-                                            <li><a href="/blank">
-                                                <span style={{ textDecoration: "underline" }}>Bath &amp; Faucets</span></a>
-                                            </li>
-                                            <li><a href="/blank">Blinds &amp; Window Treatment</a></li>
-                                            <li><a href="/blank">Building Materials</a></li>
-                                            <li><a href="/blank">Decor &amp; Furniture</a></li>
-                                            <li><a href="/blank"><span style={{ textDecoration: "underline" }}>Doors &amp; Windows</span></a>
-                                            </li>
-                                            <li><a href="/blank"><span style={{ textDecoration: "underline" }}>Electrical</span></a></li>
-                                            <li><a href="/blank">Flooring &amp; Area Rugs</a></li>
-                                            <li><a href="/blank">Hardware</a></li>
-                                            <li><a href="/blank">Heating &amp; Cooling</a></li>
-                                            <li><a href="/blank">Kitchen &amp; Kitchenware</a></li>
-                                            <li><a href="/blank">Lawn &amp; Garden</a></li>
-                                            <li><a href="/blank">Lighting &amp; Ceiling Fans</a></li>
-                                            <li><a href="/blank">AppliaOutdoor Living &amp; Pationces</a></li>
-                                            <li><a href="/blank">Paint</a></li>
-                                        </ul>
-                                    </li>
-                                    <li role="presentation" className="nav-item"><a className="nav-link" href="/blank">Home Decor &amp;
-                                Furniture</a></li>
-                                    <li role="presentation" className="nav-item"><a className="nav-link" href="/blank">DIY Projects &amp;
-                                Ideas</a></li>
-                                    <li role="presentation" className="nav-item"><a className="nav-link" href="/blank">Installation &amp;
-                                Services</a></li>
-                                    <li role="presentation" className="nav-item"><a className="nav-link" href="/blank">Specials &amp; Offers</a>
-                                    </li>
-                                    <li role="presentation" className="nav-item"><a className="nav-link" href="/blank">Local Ad</a></li>
-                                </ul>
-                            </div>
-                        </div>
                     </nav>
                     <div className="text-center py-lg-1" id="marquee"><span className="d-none d-lg-inline-block">FREE DELIVERY BY CHRISTMAS</span><span className="mx-2 d-none d-lg-inline-block">Order by December 20 - thousands of online items eligible</span><i className="fa fa-angle-right d-none d-lg-inline-block"></i></div>
                 </header>
 
-                {
-                    Object.keys(errors).length > 0 &&
+                {Object.keys(errors).length > 0 &&
                     <div className="alert alert-danger" role="alert">
                         {errors.name && <span className="d-block">{errors.name}</span>}
                         {errors.email && <span className="d-block">{errors.email}</span>}
@@ -261,7 +158,7 @@ class Header extends Component {
                         </div>
                     </div>
                 </div>
-            </div >
+            </div>
         )
     }
 }
