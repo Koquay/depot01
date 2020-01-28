@@ -18,10 +18,17 @@ class Header extends Component {
         searchItems: [],
         searchResults: [],
 
+        marquee: '',
+        marqueeContents: [],
+        
+
     }
 
-    componentDidMount() {
-        this.setState({ searchItems: this.props.header.searchItems })
+    async componentDidMount() {
+        this.setState({ searchItems: this.props.header.searchItems });
+        await this.setState({ marqueeContents: this.props.header.marqueeContents })
+        console.log('marqueeContents', this.state.marqueeContents);
+        this.startMarquee();
     }
 
     handleSignIn = () => {
@@ -58,6 +65,18 @@ class Header extends Component {
 
     clearSearchbox = (e) => {
         this.setState({ searchResults: [] })
+    }
+
+    startMarquee =() => {
+        let index = 0;
+        this.state.marquee = this.state.marqueeContents[0];
+
+        let marqueeInterval = setInterval(() => {
+            this.setState({marquee: this.state.marqueeContents[index++]});
+            if (index == this.state.marqueeContents.length) {
+                index = 0;
+            }
+        }, 4000);
     }
 
     render() {
@@ -192,7 +211,11 @@ class Header extends Component {
                             </div>
                         </div>
                     </nav>
-                    <div className="text-center py-lg-1" id="marquee"><span className="d-none d-lg-inline-block">FREE DELIVERY BY CHRISTMAS</span><span className="mx-2 d-none d-lg-inline-block">Order by December 20 - thousands of online items eligible</span><i className="fa fa-angle-right d-none d-lg-inline-block"></i></div>
+                    <div className="text-center py-lg-1" id="marquee">
+                        <span className="d-none d-lg-inline-block mr-1">{this.state.marquee}</span>
+                        {/* <span className="mx-2 d-none d-lg-inline-block">Order by December 20 - thousands of online items eligible</span> */}
+                        <i className="fa fa-angle-right d-none d-lg-inline-block"></i>
+                        </div>
                 </header>
 
                 {

@@ -20,6 +20,14 @@ const initialState = {
         "GE",
         "KitchenAid",
         "Bosch"
+    ],
+    marqueeContents: [
+        'FREE 2-DAY DELIVERY', 
+        'BUY 1 GET 1 FREE',
+        'SEE OUR UPCOMING SALES',
+        'TODAY\'S SALES',
+        'PREMIUM CUSTOMER SIGN UP',
+        
     ]
 }
 
