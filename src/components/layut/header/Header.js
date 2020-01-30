@@ -6,6 +6,7 @@ import './Header.css'
 import store from '../../../redux/store'
 import { Type } from '../../../redux/types';
 import classnames from 'classnames'
+import Breadcrumbs from '../../util/breadcrumb/Breadcrumbs';
 
 class Header extends Component {
     state = {
@@ -20,7 +21,7 @@ class Header extends Component {
 
         marquee: '',
         marqueeContents: [],
-        
+
 
     }
 
@@ -67,12 +68,12 @@ class Header extends Component {
         this.setState({ searchResults: [] })
     }
 
-    startMarquee =() => {
+    startMarquee = () => {
         let index = 0;
         this.state.marquee = this.state.marqueeContents[0];
 
         let marqueeInterval = setInterval(() => {
-            this.setState({marquee: this.state.marqueeContents[index++]});
+            this.setState({ marquee: this.state.marqueeContents[index++] });
             if (index == this.state.marqueeContents.length) {
                 index = 0;
             }
@@ -85,7 +86,7 @@ class Header extends Component {
         const { errors } = this.props;
         const numberOfItems = this.props.cart.cartItems.length;
         const searchItems = this.state.searchResults;
-        console.log('searchItems', searchItems)
+        // console.log('searchItems', searchItems)
 
         return (
             <div className="page-wrapper">
@@ -93,7 +94,9 @@ class Header extends Component {
                 <header>
                     <div className="row py-3 px-cust-5">
                         <div className="col-3 d-flex d-lg-flex align-items-end col-md-3">
-                            <img className="img-fluid" src="assets/img/hdlogo.jpg" style={{ width: "4rem" }} alt="location" />
+                            <Link to="/">
+                                <img className="img-fluid" src="assets/img/hdlogo.jpg" style={{ width: "4rem" }} alt="location" />
+                            </Link>
                             <i className="fa fa-map-marker ml-3 mr-1 d-none d-lg-block"></i>
                             <span className="d-none d-lg-block">Find Your Location</span>
                         </div>
@@ -174,9 +177,10 @@ class Header extends Component {
                                         </a>
                                         <ul className="list-unstyled">
                                             <li>
-                                                <Link className="nav-link active" to='/appliances'>
+                                                <Link className="nav-link active" to='/appliances'
+                                                    onClick={this.showOverlay.bind(this, false)}>
                                                     Appliances
-                                            </Link>
+                                                </Link>
                                             </li>
 
                                             <li><a href="/blank">
@@ -215,7 +219,9 @@ class Header extends Component {
                         <span className="d-none d-lg-inline-block mr-1">{this.state.marquee}</span>
                         {/* <span className="mx-2 d-none d-lg-inline-block">Order by December 20 - thousands of online items eligible</span> */}
                         <i className="fa fa-angle-right d-none d-lg-inline-block"></i>
-                        </div>
+                    </div>
+
+                    <Breadcrumbs />
                 </header>
 
                 {

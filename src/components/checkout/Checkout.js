@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getCart } from "../cart/CartActions";
+import { setBreadcrumb } from "../util/breadcrumb/BreadcrumbActions";
+import { restoreCart } from "../cart/CartActions";
 import './Checkout.css'
 import { placeOrder } from "../order/OrderActions";
 import MessageModal from '../util/message/MessageModal';
@@ -14,6 +16,8 @@ import InputGroup from '../form-controls/InputGroup';
 
 class Checkout extends Component {
     state = {
+        breadcrumb: { label: '/ Checkout ', url: '/checkout' },
+
         cartItems: [],
 
         // firstName: '',
@@ -51,16 +55,27 @@ class Checkout extends Component {
     }
 
     async componentDidMount() {
-        await this.props.getCart();
-        const { cartItems } = this.props.cart;
-        this.setState({ cartItems: cartItems }, () => console.log('state', this.state))
+        this.props.setBreadcrumb(this.state.breadcrumb)
+        this.getCart();        
     }
-
+    
+    
     componentWillUnmount() {
         let checkoutUserData = this.state;
         delete checkoutUserData.cartItems;
         console.log('checkoutUserData', checkoutUserData)
         localStorage.setItem('checkoutUserData', JSON.stringify(checkoutUserData));
+    }
+
+    getCart = async () => {
+        await this.props.getCart();
+        let { cartItems } = this.props.cart;
+        console.log('cartItem', cartItems)
+        if(!cartItems.length) {
+            const cart = JSON.parse(localStorage.getItem('cart'));
+            this.props.restoreCart(cart);
+        }
+        this.setState({ cartItems: cartItems }, () => console.log('state', this.state))
     }
 
     onChange = (e) => {
@@ -559,4 +574,4 @@ const mapStateToProps = (state) => ({
     messages: state.messages
 })
 
-export default connect(mapStateToProps, { getCart, placeOrder })(Checkout);
+export default connect(mapStateToProps, { getCart, placeOrder, setBreadcrumb, restoreCart })(Checkout);

@@ -5,11 +5,14 @@ import classnames from 'classnames'
 import { getProduct } from "../products/ProductsAction";
 import { addToCart } from "../cart/CartActions";
 import { calcPercentSaved } from "../util/calcPercentSaved";
+import { setBreadcrumb } from "../util/breadcrumb/BreadcrumbActions";
 
 import './SelectedProduct.css'
 
 class SelectedProduct extends Component {
     state = {
+        breadcrumb: { label: '/ Product ', url: '/selected-product' },
+
         currentImage: '',
         displayImages: [],
         isBlack: false,
@@ -25,13 +28,18 @@ class SelectedProduct extends Component {
     }
 
     async componentDidMount() {
+        this.props.setBreadcrumb(this.state.breadcrumb)
+        this.getSelectedProduct();
+    }
+
+    getSelectedProduct = async () => {
         const id = this.props.match.params.id;
         await this.props.getProduct(id);
         let { product } = this.props.products;
 
-        if(!product) {
+        if (!product) {
             product = JSON.parse(localStorage.getItem('product'));
-            await this.setState({product})
+            await this.setState({ product })
             await this.addToCart();
         }
         await this.setState({ product: product },
@@ -133,15 +141,6 @@ class SelectedProduct extends Component {
                 {productExists &&
                     <>
                         <section id="breadcrumb" className="section-padding py-0">
-                            <div className="row">
-                                <div className="col px-0">
-                                    <ol className="breadcrumb bg-white mb-0">
-                                        <li className="breadcrumb-item"><a href="/blank"><span>Home</span></a></li>
-                                        <li className="breadcrumb-item"><a href="/blank"><span>Appliances</span></a></li>
-                                        <li className="breadcrumb-item"><a href="/blank"><span>Ranges</span></a></li>
-                                    </ol>
-                                </div>
-                            </div>
                         </section>
                         <section id="banner-section" className="section-padding py-0">
                             <div className="row d-none d-md-block mb-2">
@@ -525,4 +524,4 @@ const mapStoreToComponent = (store) => ({
     cart: store.cart
 })
 
-export default connect(mapStoreToComponent, { getProduct, addToCart })(SelectedProduct);
+export default connect(mapStoreToComponent, { getProduct, addToCart, setBreadcrumb })(SelectedProduct);

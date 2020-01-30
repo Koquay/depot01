@@ -1,14 +1,26 @@
+import { Type } from "../../../redux/types";
 
 const initialState = {
-    breadCrumps: [
-        {label: 'Home', url: '/home'}
+    breadcrumbs: [
+        // { label: 'Home ', url: '/' }
     ]
 }
 
-export const BreadcrumbReducer = (state=initialState, action) => {
-    switch(action.type) {
+export const BreadcrumbReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case Type.SET_BREADCRUMBS:            
+            return {
+                ...state,
+                breadcrumbs: action.payload
+            }
+
+        case Type.REMOVE_BREADCRUMB:
+            return {
+                ...state,
+                breadcrumbs: [...state.breadcrumbs.filter(bc => bc.label !== action.payload.label)]
+            }
         default:
             return state;
     }
-     
+
 }

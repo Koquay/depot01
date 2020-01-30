@@ -6,21 +6,37 @@ import { getProducts } from "./BrandActions";
 import { brandFilters } from "./BrandFilters";
 import { calcPercentSaved } from "../util/calcPercentSaved";
 import MessageModal from '../util/message/MessageModal';
+import { setBreadcrumb } from "../util/breadcrumb/BreadcrumbActions";
 import './Brand.css'
 
 class Brand extends Component {
 
     state = {
+        breadcrumb: { label: '/ Brand ', url: '/brand' },
+
         pages: [],
         numberOfPages: 0,
         productCount: 0,
     }
 
     componentDidMount() {
-        console.log('brandFilters', brandFilters)
-        const brand = this.props.match.params.brand;
+        const brand = this.getBrand();
         this.addBrandToFilters(brand)
         this.getProducts();
+
+        this.props.setBreadcrumb(this.state.breadcrumb)
+    }
+
+    getBrand = () => {
+        let brand = this.props.match.params.brand;
+
+        if(brand) {
+            localStorage.setItem('brand', brand)
+        } else {
+            brand = localStorage.getItem('brand');
+        }
+
+        return brand;
     }
 
     getProducts = () => {
@@ -100,16 +116,7 @@ class Brand extends Component {
         return (
             <div className="container-fluid px-cust-5" id="brand">
                 <MessageModal />
-                <section>
-                    <div className="row">
-                        <div className="col">
-                            <ol className="breadcrumb px-0 pb-0">
-                                <li className="breadcrumb-item"><a href="/"><span>Home</span></a></li>
-                                <li className="breadcrumb-item"><a href="/"><span>Appliances</span></a></li>
-                            </ol>
-                        </div>
-                    </div>
-                </section>
+                
                 <section>
                     <div className="row">
                         <div className="col"><span id="numberOfItems">Shop <span id="count">{productCount}</span> products<br /></span>
@@ -289,4 +296,4 @@ const mapStoreToComponent = (store) => ({
     products: store.products
 })
 
-export default connect(mapStoreToComponent, { getProducts })(Brand)
+export default connect(mapStoreToComponent, { getProducts, setBreadcrumb })(Brand)

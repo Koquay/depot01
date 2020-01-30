@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 import MessageModal  from '../util/message/MessageModal';
+import { setBreadcrumb } from "../util/breadcrumb/BreadcrumbActions";
 import './Home.css'
 
-export default class Home extends Component {
+class Home extends Component {
+    state = {
+        breadcrumb: { label: 'Home ', url: '/' }
+    }
+
+    componentDidMount() {
+        this.props.setBreadcrumb(this.state.breadcrumb)
+    }
+
+
     render() {
         return (
             <div className="container-fluid px-cust-5 pb-5" id="main">
@@ -235,3 +246,5 @@ export default class Home extends Component {
         )
     }
 }
+
+export default connect(null, {setBreadcrumb})(Home)

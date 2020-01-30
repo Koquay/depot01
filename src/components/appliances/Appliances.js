@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { setBreadcrumb } from "../util/breadcrumb/BreadcrumbActions";
 import './Appliances.css'
 
 class Appliances extends Component {
+    state = {
+        breadcrumb: { label: '/ Appliances ', url: '/appliances' }
+    }
+    
+    componentDidMount() {
+        this.props.setBreadcrumb(this.state.breadcrumb)
+    }
+
     render() {
         console.log('appliances', this.props.appliances)
         const { appliances } = this.props;
@@ -11,14 +20,6 @@ class Appliances extends Component {
         return (
             <div className="container-fluid px-cust-5" id="appliances">
                 <section>
-                    <div className="row">
-                        <div className="col">
-                            <ol className="breadcrumb px-0 pb-0">
-                                <li className="breadcrumb-item"><a href="/"><span>Home</span></a></li>
-                                <li className="breadcrumb-item"><a href="/"><span>Appliances</span></a></li>
-                            </ol>
-                        </div>
-                    </div>
                     <div className="row">
                         <div className="col mb-2">
                             <h3>Appliances</h3>
@@ -211,4 +212,4 @@ const mapStoreToComponent = (store) => ({
     appliances: store.appliances
 })
 
-export default connect(mapStoreToComponent)(Appliances)
+export default connect(mapStoreToComponent, {setBreadcrumb})(Appliances)

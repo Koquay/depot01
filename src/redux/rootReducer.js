@@ -8,6 +8,7 @@ import { ProductsReducer } from "../components/products/ProductsReducer";
 import { CartReducer } from "../components/cart/CartReducer";
 import { CheckoutReducer } from "../components/checkout/CheckoutReducer";
 import { MessageReducer } from "../components/util/message/MessageReducer";
+import { BreadcrumbReducer } from "../components/util/breadcrumb/BreadcrumbReducer";
 
 export default combineReducers({
     footer: FooterReducer,
@@ -18,5 +19,6 @@ export default combineReducers({
     products: ProductsReducer,
     cart: CartReducer,
     checkout: CheckoutReducer,    
-    messages:MessageReducer
+    messages:MessageReducer,
+    breadcrumbs:BreadcrumbReducer
 })

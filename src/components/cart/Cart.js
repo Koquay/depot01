@@ -3,14 +3,23 @@ import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 import { calcPercentSaved } from "../util/calcPercentSaved";
 import { getCart, removeItem, restoreCart } from "./CartActions";
+import { setBreadcrumb } from "../util/breadcrumb/BreadcrumbActions";
 import './Cart.css'
 
 class Cart extends Component {
     state = {
+        breadcrumb: { label: '/ Cart ', url: '/cart' },
+        
         cart: {}
     }
 
     async componentDidMount() {
+        this.props.setBreadcrumb(this.state.breadcrumb)
+        
+        this.getCart();        
+    }
+
+    getCart = async () => {
         await this.props.getCart();
 
         let cart = this.props.cart;
@@ -32,7 +41,7 @@ class Cart extends Component {
 
         return (
             <div className="container-fluid px-cust-5">
-                <section id="main-section" className="section-padding">
+                <section id="main-section" className="">
                     <div className="row">
                         <div className="col-12 col-xl-8" id="left-col">
                             <section className="d-none d-xl-block">
@@ -293,4 +302,4 @@ const mapStoreToComponent = (store) => ({
 //     }
 // }
 
-export default connect(mapStoreToComponent, { getCart, removeItem, restoreCart })(Cart)
+export default connect(mapStoreToComponent, { getCart, removeItem, restoreCart, setBreadcrumb })(Cart)
