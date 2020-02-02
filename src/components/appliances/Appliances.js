@@ -95,19 +95,21 @@ class Appliances extends Component {
 
                         </div>
                         <div className="col-12 col-lg-10 px-2" id="banner-section">
-                            <div className="row">
-                                <div className="col-12 col-md-8" id="banner" style={{ height: "19rem" }}>
-                                    <h1>Heading</h1>
-                                </div>
-                                <div className="col-12 text-center col-md-4" id="ad-text">
+                            <Link to="/brand">
+                                <div className="row">
+                                    <div className="col-12 col-md-12" id="banner" style={{ height: "19rem" }}>
+                                        <h1>Heading</h1>
+                                    </div>
+                                    {/* <div className="col-12 text-center col-md-4" id="ad-text">
                                     <h1>UP TO 30% OFF</h1>
                                     <span>with Appliance Special Buys**<br />Valid 12/12 -
                                     1/1/2020.</span>
                                     <button className="btn btn-primary button-primary mt-4 px-2" type="button">
                                         <strong>Shop All Appliance Savings</strong>
-                                    </button>
+                                    </button> 
+                                </div> */}
                                 </div>
-                            </div>
+                            </Link>
                             <section>
                                 <div className="row mt-5">
                                     <div className="col">
