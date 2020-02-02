@@ -5,7 +5,7 @@ import './Footer.css'
 class Footer extends Component {
     render() {
         const { customerService, resources, aboutUs } = this.props.footer;
-        console.log('customerService, resources, aboutUs', customerService, resources, aboutUs)
+
         return (
             <div className="container-fluid mt-3 mb-4 d-none d-md-block" id="footer">
                 <section className="d-none d-md-block">

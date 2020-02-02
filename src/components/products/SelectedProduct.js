@@ -6,8 +6,12 @@ import { getProduct } from "../products/ProductsAction";
 import { addToCart } from "../cart/CartActions";
 import { calcPercentSaved } from "../util/calcPercentSaved";
 import { setBreadcrumb } from "../util/breadcrumb/BreadcrumbActions";
+import store from '../../redux/store';
+import { Type } from "../../redux/types";
 
 import './SelectedProduct.css'
+import MessageModal from '../util/message/MessageModal';
+import { restoreCart } from "../cart/CartActions";
 
 class SelectedProduct extends Component {
     state = {
@@ -30,6 +34,7 @@ class SelectedProduct extends Component {
     async componentDidMount() {
         this.props.setBreadcrumb(this.state.breadcrumb)
         this.getSelectedProduct();
+        this.props.restoreCart();
     }
 
     getSelectedProduct = async () => {
@@ -40,7 +45,7 @@ class SelectedProduct extends Component {
         if (!product) {
             product = JSON.parse(localStorage.getItem('product'));
             await this.setState({ product })
-            await this.addToCart();
+            // await this.addToCart();
         }
         await this.setState({ product: product },
             async () => {
@@ -50,8 +55,16 @@ class SelectedProduct extends Component {
             })
     }
 
-    addToCart = () => {
-        this.props.addToCart(this.state.product)
+    addToCart = async () => {
+        await this.props.addToCart(this.state.product);     
+        this.showAddToCartMessage();   
+    }
+
+    showAddToCartMessage = () => {
+        store.dispatch({
+            type: Type.INFO_MESSAGE,   
+            payload: {info: 'Item added to cart.'}             
+        })
     }
 
     setProductChoice = (color) => {
@@ -138,6 +151,7 @@ class SelectedProduct extends Component {
 
         return (
             <div className="container-fluid px-cust-5">
+                <MessageModal />
                 {productExists &&
                     <>
                         <section id="breadcrumb" className="section-padding py-0">
@@ -524,4 +538,4 @@ const mapStoreToComponent = (store) => ({
     cart: store.cart
 })
 
-export default connect(mapStoreToComponent, { getProduct, addToCart, setBreadcrumb })(SelectedProduct);
+export default connect(mapStoreToComponent, { getProduct, addToCart, setBreadcrumb, restoreCart })(SelectedProduct);

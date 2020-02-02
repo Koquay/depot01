@@ -2,7 +2,7 @@ import { Type } from "../../../redux/types";
 
 const initialState = {
     breadcrumbs: [
-        // { label: 'Home ', url: '/' }
+                
     ]
 }
 
@@ -11,7 +11,8 @@ export const BreadcrumbReducer = (state = initialState, action) => {
         case Type.SET_BREADCRUMBS:            
             return {
                 ...state,
-                breadcrumbs: action.payload
+                breadcrumbs: action.payload.breadcrumbs,
+                source: action.payload.source
             }
 
         case Type.REMOVE_BREADCRUMB:

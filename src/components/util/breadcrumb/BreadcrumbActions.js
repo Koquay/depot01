@@ -29,7 +29,7 @@ export const setBreadcrumb = (breadcrumb) => dispatch => {
     }
     dispatch({
         type: Type.SET_BREADCRUMBS,
-        payload: breadcrumbs
+        payload: {breadcrumbs:breadcrumbs, source: 'component'}
     })
 
     localStorage.setItem('breadcrumbs', JSON.stringify(breadcrumbs));
@@ -37,10 +37,11 @@ export const setBreadcrumb = (breadcrumb) => dispatch => {
 
 export const restoreBreadcrumbs = () => dispatch => {
     const breadcrumbs = JSON.parse(localStorage.getItem('breadcrumbs'));
+    console.log('BreadcrumActions breadcrumbs', breadcrumbs)
 
     dispatch({
         type: Type.SET_BREADCRUMBS,
-        payload: breadcrumbs
+        payload: {breadcrumbs:breadcrumbs, source: 'localStorage'}
     })
 }
 

@@ -8,13 +8,20 @@ class Appliances extends Component {
     state = {
         breadcrumb: { label: '/ Appliances ', url: '/appliances' }
     }
-    
+
     componentDidMount() {
-        this.props.setBreadcrumb(this.state.breadcrumb)
+        console.log('breadcrumbs source', this.props.breadcrumbs.source)
+        console.log('breadcrumbs ', this.props.breadcrumbs)
+        console.log('breadcrumbs props ', this.props)
+
+        if (this.props.breadcrumbs.source !== 'localStorage') {
+            this.props.setBreadcrumb(this.state.breadcrumb)
+        }
+
     }
 
     render() {
-        console.log('appliances', this.props.appliances)
+        console.log('appliances props', this.props)
         const { appliances } = this.props;
 
         return (
@@ -111,22 +118,28 @@ class Appliances extends Component {
                                 <div className="row mt-3 d-none d-lg-flex">
                                     {appliances.kitchenAppliances.appliances.map(appliance => (
                                         <div key={appliance.img} className="col-12 text-center col-md-3">
-                                            <img alt={appliance.img} className="img-fluid" src={"assets/img/" + appliance.img} />
-                                            <h6>{appliance.name}</h6>
+                                            <Link to={'/brand'}>
+                                                <img alt={appliance.img} className="img-fluid" src={"assets/img/" + appliance.img} />
+                                                <h6>{appliance.name}</h6>
+                                            </Link>
                                         </div>
                                     ))}
                                 </div>
                                 <div className="row text-center d-flex justify-content-center mt-4 d-lg-none mobile">
                                     {appliances.kitchenAppliances.mobileAppliances.map(appliance => (
                                         <div key={appliance.name} className="col-6 text-center">
-                                            <img alt="blank" className="img-fluid" src={"assets/img/" + appliance.img} />
-                                            <h6>{appliance.name}</h6>
+                                            <Link to={'/brand'}>
+                                                <img alt="blank" className="img-fluid" src={"assets/img/" + appliance.img} />
+                                                <h6>{appliance.name}</h6>
+                                            </Link>
                                         </div>
                                     ))}
 
                                     {appliances.kitchenAppliances.mobileBanners.map(banner => (
                                         <div key={banner} className="col-12 text-center mt-3">
-                                            <img alt="blank" className="img-fluid" src={"assets/img/" + banner} />
+                                            <Link to={'/brand'}>
+                                                <img alt="blank" className="img-fluid" src={"assets/img/" + banner} />
+                                            </Link>
                                         </div>
                                     ))}
                                 </div>
@@ -137,15 +150,17 @@ class Appliances extends Component {
                                     <h2>{appliances.laundryAppliances.title}</h2>
                                     <hr />
                                     {appliances.laundryAppliances.categories.map(category => (
-                                        <a key={category} className="d-block">
+                                        <Link key={category} className="d-block" to={'/brand'}>
                                             <span style={{ textDecoration: "underline" }}>{category}</span>
                                             <i className="fa fa-angle-right ml-1"></i>
-                                        </a>
+                                        </Link>
                                     ))}
 
                                 </div>
                                 <div className="col-8">
-                                    <img alt="blank" className="img-fluid" src={"assets/img/" + appliances.laundryAppliances.image} />
+                                    <Link to={'/brand'}>
+                                        <img alt="blank" className="img-fluid" src={"assets/img/" + appliances.laundryAppliances.image} />
+                                    </Link>
                                 </div>
                             </div>
                             <div className="row d-none d-lg-flex mt-5">
@@ -164,8 +179,10 @@ class Appliances extends Component {
                                 <div className="row mt-4">
                                     {appliances.smallKitchenAppliances.appliances.map(appliance => (
                                         <div key={appliance.name} className="col-2 text-center mb-4">
-                                            <img alt="blank" className="img-fluid" src={"assets/img/" + appliance.image} />
-                                            <span>{appliance.name}</span>
+                                            <Link to={'/brand'}>
+                                                <img alt="blank" className="img-fluid" src={"assets/img/" + appliance.image} />
+                                                <span>{appliance.name}</span>
+                                            </Link>
                                         </div>
                                     ))}
                                 </div>
@@ -179,7 +196,9 @@ class Appliances extends Component {
                                 <div className="row mt-4">
                                     {appliances.topApplianceBrands.brands.map(brand => (
                                         <div key={brand.image} className="col-2 text-center mb-4">
-                                            <img alt="blank" className="img-fluid" src={"assets/img/" + brand.image} />
+                                            <Link to={'/brand'}>
+                                                <img alt="blank" className="img-fluid" src={"assets/img/" + brand.image} />
+                                            </Link>
                                         </div>
                                     ))}
                                 </div>
@@ -193,7 +212,7 @@ class Appliances extends Component {
                                 <div className="row mt-4">
                                     <div className="col">
                                         {appliances.greatAppliances.paragraphs.map(paragraph => (
-                                            <p key={paragraph.substr(1,10)} className="mb-4">
+                                            <p key={paragraph.substr(1, 10)} className="mb-4">
                                                 {paragraph}<br />
                                             </p>
                                         ))}
@@ -209,7 +228,8 @@ class Appliances extends Component {
 }
 
 const mapStoreToComponent = (store) => ({
-    appliances: store.appliances
+    appliances: store.appliances,
+    breadcrumbs: store.breadcrumbs
 })
 
-export default connect(mapStoreToComponent, {setBreadcrumb})(Appliances)
+export default connect(mapStoreToComponent, { setBreadcrumb })(Appliances)

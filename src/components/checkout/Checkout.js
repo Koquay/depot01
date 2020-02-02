@@ -139,7 +139,7 @@ class Checkout extends Component {
                         <section id="header-section">
                             <div className="row d-none d-md-block">
                                 <div className="col d-md-flex d-xl-flex align-items-md-center align-items-xl-center">
-                                    <img alt="blank" className="img-fluid" src="assets/img/hdlogo.jpg" style={{ width: "4rem" }} /><span id="page-header" className="ml-1">Secure Checkout</span></div>
+                                    <img alt="blank" className="img-fluid" src="assets/img/LogoMakr_9skTgi.png" style={{ width: "4rem" }} /><span id="page-header" className="ml-1">Secure Checkout</span></div>
                             </div>
                         </section>
                         <form>
@@ -452,7 +452,7 @@ class Checkout extends Component {
                     <div className="col" id="right-col">
                         <div className="row d-md-none">
                             <div className="col bg-white right-inner-col">
-                                <img alt="blank" className="img-fluid" src="assets/img/hdlogo.jpg" style={{ width: "4rem" }} /><span id="page-header" className="ml-1">Secure Checkout</span></div>
+                                <img alt="blank" className="img-fluid" src="assets/img/LogoMakr_9skTgi.png" style={{ width: "4rem" }} /><span id="page-header" className="ml-1">Secure Checkout</span></div>
                         </div>
                         <div className="row">
                             <div className="col bg-white right-inner-col">

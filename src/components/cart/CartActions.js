@@ -18,6 +18,10 @@ export const getCart = () => dispatch => {
 }
 
 export const restoreCart = (cart) => dispatch => {
+    console.log('restoreCart', cart)
+    if(!cart) {
+        cart = JSON.parse(localStorage.getItem('cart'))
+    }
     dispatch({
         type: Type.RESTORE_CART,
         payload: cart

@@ -7,12 +7,18 @@ export const getProducts = (filters) => dispatch => {
     const queryParams = createQueryParams(filters);
 
     axios.get(`http://localhost:4200/api/brand/${queryParams}`)
-    .then(res => {
-        console.log('products', res.data)
+    .then(res => {        
         dispatch({
             type:Type.SET_PRODUCTS,
             payload: res.data
         })
+        
+        if(res.data.products.length === 0) {            
+            dispatch({
+                type: Type.INFO_MESSAGE,   
+                payload: {info: 'No product found.'}             
+            })
+        }
     })
     .catch(err => {
         dispatch({

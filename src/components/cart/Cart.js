@@ -43,7 +43,7 @@ class Cart extends Component {
             <div className="container-fluid px-cust-5">
                 <section id="main-section" className="">
                     <div className="row">
-                        <div className="col-12 col-xl-8" id="left-col">
+                        <div className="col-12 col-xl-8" id="cart-left-col">
                             <section className="d-none d-xl-block">
                                 <div className="row bg-eee mt-3 mr-2 px-2 pt-3 pb-1">
                                     <div className="col-3 col-20perc">

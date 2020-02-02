@@ -58,7 +58,7 @@ body {
   }
   
   #main #shop-by-category-heading {
-    width: 16rem;
+    width: 18rem !important; 
   }
   
   #main #apply-now-icon {
@@ -99,13 +99,13 @@ body {
     border-bottom: 4px solid #f96302 !important;
   }
   
-  .button-primary {
-    background-color: #f96302;
+  .home-button-primary {
+    background-color: #f96302 !important;
     color: white;
-    border: inset #f96302 2px;
-    font-weight: bold;
-    padding: 5px 40px;
-    border-radius: 0;
+    border: inset #f96302 2px !important;
+    font-weight: bold !important;
+    padding: 5px 40px !important;
+    border-radius: 0 !important;
   }
   
   .px-cust-5 {

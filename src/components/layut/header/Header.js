@@ -95,7 +95,7 @@ class Header extends Component {
                     <div className="row py-3 px-cust-5">
                         <div className="col-3 d-flex d-lg-flex align-items-end col-md-3">
                             <Link to="/">
-                                <img className="img-fluid" src="assets/img/hdlogo.jpg" style={{ width: "4rem" }} alt="location" />
+                                <img className="img-fluid" src="assets/img/LogoMakr_9skTgi.png" style={{ width: "4rem" }} alt="location" />
                             </Link>
                             <i className="fa fa-map-marker ml-3 mr-1 d-none d-lg-block"></i>
                             <span className="d-none d-lg-block">Find Your Location</span>
@@ -126,15 +126,15 @@ class Header extends Component {
                         </div>
                         <div className="col-2 d-flex justify-content-between align-items-end align-items-md-end col-md-3">
                             {!isLoggedIn &&
-                                <a id="account" className="d-none d-lg-block" data-toggle="modal" data-target="#signInModal">
-                                    <span className="mr-1 font-weight-bold"> Login </span>
+                                <a id="account" className="" data-toggle="modal" data-target="#signInModal">
+                                    <span className="mr-1 font-weight-bold d-none d-md-inline-block"> Login </span>
                                     <i className="fa fa-user-o font-weight-bold"></i>
                                 </a>
                             }
 
                             {isLoggedIn &&
                                 <a onClick={this.logoutUser}>
-                                    <span className="mr-1 font-weight-bold"> Logout </span>
+                                    <span className="mr-1 font-weight-bold d-none d-md-inline-block"> Logout </span>
                                     <i className="fa fa-user-o font-weight-bold"></i>
                                 </a>
                             }
@@ -177,8 +177,7 @@ class Header extends Component {
                                         </a>
                                         <ul className="list-unstyled">
                                             <li>
-                                                <Link className="nav-link active" to='/appliances'
-                                                    onClick={this.showOverlay.bind(this, false)}>
+                                                <Link className="nav-link active" to='/appliances'>
                                                     Appliances
                                                 </Link>
                                             </li>
@@ -202,15 +201,33 @@ class Header extends Component {
                                             <li><a href="/blank">Paint</a></li>
                                         </ul>
                                     </li>
-                                    <li role="presentation" className="nav-item"><a className="nav-link" href="/blank">Home Decor &amp;
-                                Furniture</a></li>
-                                    <li role="presentation" className="nav-item"><a className="nav-link" href="/blank">DIY Projects &amp;
-                                Ideas</a></li>
-                                    <li role="presentation" className="nav-item"><a className="nav-link" href="/blank">Installation &amp;
-                                Services</a></li>
-                                    <li role="presentation" className="nav-item"><a className="nav-link" href="/blank">Specials &amp; Offers</a>
+
+                                    <li role="presentation" className="nav-item">
+                                        <Link className="nav-link" to='/appliances'>
+                                            Home Decor Furniture
+                                        </Link>
                                     </li>
-                                    <li role="presentation" className="nav-item"><a className="nav-link" href="/blank">Local Ad</a></li>
+
+                                    <li role="presentation" className="nav-item">
+                                        <Link className="nav-link" to='/appliances'>
+                                            DIY Projects Ideas
+                                        </Link>
+                                    </li>
+                                    <li role="presentation" className="nav-item">
+                                        <Link className="nav-link" to='/appliances'>
+                                            Installation Services
+                                        </Link>
+                                    </li>
+                                    <li role="presentation" className="nav-item">
+                                        <Link className="nav-link" to='/appliances'>
+                                            Specials Offers
+                                        </Link>
+                                    </li>
+                                    <li role="presentation" className="nav-item">
+                                        <Link className="nav-link" to='/appliances'>
+                                            Local Ad
+                                        </Link>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

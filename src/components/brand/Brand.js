@@ -45,7 +45,9 @@ class Brand extends Component {
 
     addBrandToFilters = (brand) => {
         let brandFilter = brandFilters.brandFilter.brands.find(filter => filter.name === brand)
-        brandFilter.checked = true;
+        if(brandFilter) {
+            brandFilter.checked = true;
+        }        
         console.log('brandFilters', brandFilters)
     }
 

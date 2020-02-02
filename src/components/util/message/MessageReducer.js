@@ -34,7 +34,7 @@ export const MessageReducer = (state = initialState, action) => {
                 ...state.messages,
                 orderValidationErrors: action.payload,
             }
-            case Type.INFO_MESSAGE:
+        case Type.INFO_MESSAGE:
             return {
                 ...state.messages,
                 messageType: 'info',
