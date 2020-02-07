@@ -23,6 +23,7 @@ export const getProducts = (filters) => dispatch => {
         }
     })
     .catch(err => {
+        console.log('err', err.response)
         dispatch({
             type: Type.SET_SERVER_ERROR,
             payload: err.response.data
