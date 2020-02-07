@@ -12,5 +12,5 @@ configureRoutes(app);
 configureMongodb();
 
 app.listen(PORT, () => {
-    console.log(chalk.blue(`Home Depot running on port ${PORT}`))
+    console.log(chalk.blue(`Server running on port ${PORT}`))
 })
