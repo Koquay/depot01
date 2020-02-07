@@ -48,11 +48,9 @@ class Brand extends Component {
         if(brandFilter) {
             brandFilter.checked = true;
         }        
-        console.log('brandFilters', brandFilters)
     }
 
     getPage = (pageNo) => {
-        console.log('pageNo', pageNo)
         brandFilters.pageNo = pageNo;
         this.getProducts();
     }

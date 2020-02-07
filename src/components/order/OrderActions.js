@@ -18,7 +18,8 @@ export const placeOrder = (orderData) => dispatch => {
     } else {
         const order = createOrder(orderData);
 
-        axios.post('http://localhost:4200/api/order', order)
+        // axios.post('http://localhost:4200/api/order', order)
+        axios.post('/api/order', order)        
         .then(res => {
             console.log('newOrder', res.data)
             dispatch({

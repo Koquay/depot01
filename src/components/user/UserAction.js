@@ -12,7 +12,8 @@ export const signIn = (userData, history) => dispatch => {
             payload: errors
         })
     } else {
-        axios.post('http://localhost:4200/api/user/', userData)
+        // axios.post('http://localhost:4200/api/user/', userData)
+        axios.post('/api/user/', userData)        
             .then(res => {
                 console.log('user', res.data)
                 storeUserData(res.data, dispatch);

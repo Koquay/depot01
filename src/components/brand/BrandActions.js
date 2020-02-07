@@ -6,8 +6,10 @@ export const getProducts = (filters) => dispatch => {
 
     const queryParams = createQueryParams(filters);
 
-    axios.get(`http://localhost:4200/api/brand/${queryParams}`)
+    // axios.get(`http://localhost:4200/api/brand/${queryParams}`)
+    axios.get(`/api/brand/${queryParams}`)    
     .then(res => {        
+        console.log('products', res.data)
         dispatch({
             type:Type.SET_PRODUCTS,
             payload: res.data
