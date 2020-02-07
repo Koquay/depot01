@@ -7,9 +7,6 @@ const cors = require('cors');
 const express = require('express');
 const chalk = require('chalk');
 
-process.env.INDEX = path.join(__dirname, '../../../build/index.html');
-// process.env.INDEX = path.join(process.env.DIST, '/index.html');
-
 process.env.DIST = path.join(__dirname, '../../../build');
 process.env.INDEX = path.join(process.env.DIST, '/index.html');
 
