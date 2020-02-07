@@ -23,6 +23,7 @@
     "material-ui-rating": "^4.2.0",
     "mongoose": "^5.8.11",
     "morgan": "^1.9.1",
+    "nodemon": "^2.0.2",
     "path": "^0.12.7",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
@@ -36,6 +37,8 @@
   },
   "scripts": {
     "start": "node ./backend/server.js",
+    "heroku-postbuild": "npm run build",
+    "nodemon": "nodemon ./backend/server.js",
     "startX": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
