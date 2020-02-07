@@ -37,7 +37,7 @@
   },
   "scripts": {
     "start": "node ./backend/server.js",
-    "heroku-postbuild": "npm run build",
+    "heroku-postbuild": "npm install && npm run build",
     "nodemon": "nodemon ./backend/server.js",
     "startX": "react-scripts start",
     "build": "react-scripts build",
