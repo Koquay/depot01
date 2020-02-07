@@ -35,8 +35,8 @@
     "uuid": "^3.3.3"
   },
   "scripts": {
-    "server": "node backend/server.js",
-    "start": "react-scripts start",
+    "start": "node backend/server.js",
+    "startX": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
